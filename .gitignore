@@ -1,0 +1,6 @@
+.vs/
+RoomBooking.Web/obj/
+RoomBooking.Data/bin/
+RoomBooking.Data/obj/
+RoomBooking.Web/bin/
+RoomBooking.Web/wwwroot/lib/
