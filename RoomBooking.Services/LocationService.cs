@@ -3,6 +3,7 @@ using RoomBooking.Core.Models;
 using RoomBooking.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace RoomBooking.Services
 {
@@ -16,7 +17,9 @@ namespace RoomBooking.Services
 
         public IEnumerable<Location> GetLocations()
         {
-            throw new NotImplementedException();
+            return _context
+                .Locations
+                .ToList();
         }
     }
 }
