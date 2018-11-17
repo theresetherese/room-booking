@@ -45,8 +45,9 @@ namespace RoomBooking.Services.Tests
         {
             ILocationService sut = new LocationService(_fixture.MockContext.Object);
 
-            int expected = 1;
-            int actual = (await sut.GetLocation(expected)).ID;
+            int expected = 2;
+            var location = await sut.GetLocation(expected);
+            int actual = location.ID;
 
             Assert.Equal(expected, actual);
         }
