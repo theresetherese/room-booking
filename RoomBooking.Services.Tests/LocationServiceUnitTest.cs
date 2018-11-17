@@ -19,5 +19,12 @@ namespace RoomBooking.Services.Tests
         {
             ILocationService sut = new LocationService(fixture.MockContext.Object);
         }
+
+        [Fact]
+        public void ServiceCreationWithNullContextShouldFail()
+        {
+            Action action = () => new LocationService(null);
+            Assert.Throws<ArgumentNullException>(action);
+        }
     }
 }
