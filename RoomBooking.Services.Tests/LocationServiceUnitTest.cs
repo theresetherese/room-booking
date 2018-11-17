@@ -7,17 +7,17 @@ namespace RoomBooking.Services.Tests
 {
     public class LocationServiceUnitTest : IClassFixture<DataContextFixture>
     {
-        DataContextFixture fixture;
+        private DataContextFixture _fixture;
 
         public LocationServiceUnitTest(DataContextFixture fixture)
         {
-            this.fixture = fixture;
+            _fixture = fixture;
         }
 
         [Fact]
         public void ServiceCreationWithContextShouldBeOk()
         {
-            ILocationService sut = new LocationService(fixture.MockContext.Object);
+            ILocationService sut = new LocationService(_fixture.MockContext.Object);
         }
 
         [Fact]
