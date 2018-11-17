@@ -1,12 +1,4 @@
 .vs/
-RoomBooking.Web/obj/
-RoomBooking.Data/bin/
-RoomBooking.Data/obj/
-RoomBooking.Web/bin/
+obj
+bin
 RoomBooking.Web/wwwroot/lib/
-RoomBooking.Core/bin/
-RoomBooking.Core/obj/
-RoomBooking.Services/obj/
-RoomBooking.Services/bin/
-RoomBooking.Core.Tests/bin/
-RoomBooking.Core.Tests/obj/

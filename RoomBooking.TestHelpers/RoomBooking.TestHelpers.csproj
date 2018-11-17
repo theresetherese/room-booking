@@ -12,9 +12,4 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\RoomBooking.Core\RoomBooking.Core.csproj" />
-    <ProjectReference Include="..\RoomBooking.TestHelpers\RoomBooking.TestHelpers.csproj" />
-  </ItemGroup>
-
 </Project>

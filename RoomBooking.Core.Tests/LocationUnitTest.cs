@@ -1,25 +1,17 @@
 using RoomBooking.Core.Models;
-using System;
-using System.ComponentModel.DataAnnotations;
+using RoomBooking.TestHelpers;
 using Xunit;
 
 namespace RoomBooking.Core.Tests
 {
-    public class LocationUnitTest
+    public class LocationUnitTest : UnitTestBase
     {
         [Fact]
         public void ShouldThrowErrorOnEmptyName()
         {
             Location sut = new Location();
 
-            var validationContext = new ValidationContext(sut);
-
-            Action action = () => Validator.ValidateObject(
-                sut,
-                validationContext,
-                true);
-
-            Assert.Throws<ValidationException>(action);
+            ValidationShouldThrowError(sut);
         }
     }
 }
