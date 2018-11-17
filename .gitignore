@@ -8,3 +8,5 @@ RoomBooking.Core/bin/
 RoomBooking.Core/obj/
 RoomBooking.Services/obj/
 RoomBooking.Services/bin/
+RoomBooking.Core.Tests/bin/
+RoomBooking.Core.Tests/obj/
