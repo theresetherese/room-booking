@@ -1,6 +1,7 @@
 using RoomBooking.Core.Interfaces;
 using RoomBooking.TestHelpers;
 using System;
+using System.Linq;
 using Xunit;
 
 namespace RoomBooking.Services.Tests
@@ -24,7 +25,19 @@ namespace RoomBooking.Services.Tests
         public void ServiceCreationWithNullContextShouldFail()
         {
             Action action = () => new LocationService(null);
+
             Assert.Throws<ArgumentNullException>(action);
+        }
+
+        [Fact]
+        public void GetLocationsShouldReturnObjects()
+        {
+            ILocationService sut = new LocationService(_fixture.MockContext.Object);
+
+            var locations = sut.GetLocations();
+
+            Assert.NotNull(locations);
+            Assert.True(locations.Any());
         }
     }
 }

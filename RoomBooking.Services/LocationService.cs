@@ -1,6 +1,8 @@
-﻿using System;
-using RoomBooking.Core.Interfaces;
+﻿using RoomBooking.Core.Interfaces;
+using RoomBooking.Core.Models;
 using RoomBooking.Data;
+using System;
+using System.Collections.Generic;
 
 namespace RoomBooking.Services
 {
@@ -10,6 +12,11 @@ namespace RoomBooking.Services
         public LocationService(DataContext context)
         {
             _context = context ?? throw new ArgumentNullException();
+        }
+
+        public IEnumerable<Location> GetLocations()
+        {
+            throw new NotImplementedException();
         }
     }
 }
