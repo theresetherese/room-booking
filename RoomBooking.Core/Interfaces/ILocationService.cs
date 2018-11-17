@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RoomBooking.Core.Interfaces
 {
     public interface ILocationService
     {
-        IEnumerable<Location> GetLocations();
+        Task<IEnumerable<Location>> GetLocations();
     }
 }

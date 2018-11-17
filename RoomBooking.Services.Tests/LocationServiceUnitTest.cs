@@ -30,11 +30,11 @@ namespace RoomBooking.Services.Tests
         }
 
         [Fact]
-        public void GetLocationsShouldReturnObjects()
+        public async void GetLocationsShouldReturnObjects()
         {
             ILocationService sut = new LocationService(_fixture.MockContext.Object);
 
-            var locations = sut.GetLocations();
+            var locations = await sut.GetLocations();
 
             Assert.NotNull(locations);
             Assert.True(locations.Any());

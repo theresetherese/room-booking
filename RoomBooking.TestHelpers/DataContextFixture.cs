@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MockQueryable.Moq;
 using Moq;
 using RoomBooking.Core.Models;
 using RoomBooking.Data;
@@ -28,7 +29,7 @@ namespace RoomBooking.TestHelpers
 
         private void SetupDataContextLocations()
         {
-            IQueryable<Location> locations = new List<Location>
+            var locations = new List<Location>
             {
                 new Location
                 {
@@ -40,15 +41,10 @@ namespace RoomBooking.TestHelpers
                     ID = 2,
                     Name = "Location 2"
                 }
-            }.AsQueryable();
+            };
 
-            var mockSet = new Mock<DbSet<Location>>();
-            mockSet.As<IQueryable<Location>>().Setup(m => m.Provider).Returns(locations.Provider);
-            mockSet.As<IQueryable<Location>>().Setup(m => m.Expression).Returns(locations.Expression);
-            mockSet.As<IQueryable<Location>>().Setup(m => m.ElementType).Returns(locations.ElementType);
-            mockSet.As<IQueryable<Location>>().Setup(m => m.GetEnumerator()).Returns(locations.GetEnumerator());
-
-            MockContext.Setup(c => c.Locations).Returns(mockSet.Object);
+            var mock = locations.AsQueryable().BuildMockDbSet();
+            MockContext.Setup(c => c.Locations).Returns(mock.Object);
         }
     }
 }

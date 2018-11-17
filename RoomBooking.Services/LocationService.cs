@@ -1,9 +1,11 @@
-﻿using RoomBooking.Core.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using RoomBooking.Core.Interfaces;
 using RoomBooking.Core.Models;
 using RoomBooking.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RoomBooking.Services
 {
@@ -15,11 +17,11 @@ namespace RoomBooking.Services
             _context = context ?? throw new ArgumentNullException();
         }
 
-        public IEnumerable<Location> GetLocations()
+        public async Task<IEnumerable<Location>> GetLocations()
         {
-            return _context
+            return await _context
                 .Locations
-                .ToList();
+                .ToListAsync();
         }
     }
 }
