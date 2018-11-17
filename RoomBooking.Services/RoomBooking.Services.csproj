@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RoomBooking.Core\RoomBooking.Core.csproj" />
+    <ProjectReference Include="..\RoomBooking.Data\RoomBooking.Data.csproj" />
   </ItemGroup>
 
 </Project>

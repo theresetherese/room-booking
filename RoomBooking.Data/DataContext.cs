@@ -12,6 +12,6 @@ namespace RoomBooking.Data
         {
         }
 
-        public DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
     }
 }
