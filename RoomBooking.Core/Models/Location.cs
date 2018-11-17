@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RoomBooking.Data.Models
+namespace RoomBooking.Core.Models
 {
-    public class Office
+    public class Location
     {
         public int ID { get; set; }
     }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RoomBooking.Data.Models;
+using RoomBooking.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +12,6 @@ namespace RoomBooking.Data
         {
         }
 
-        public DbSet<Office> Offices { get; set; }
+        public DbSet<Location> Locations { get; set; }
     }
 }
