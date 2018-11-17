@@ -8,6 +8,9 @@ namespace RoomBooking.Data
 {
     public class DataContext : DbContext
     {
+        public DataContext() : base()
+        {
+        }
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }

@@ -9,7 +9,7 @@ namespace RoomBooking.Services
         private DataContext _context;
         public LocationService(DataContext context)
         {
-            throw new NotImplementedException();
+            this._context = context;
         }
     }
 }
