@@ -17,6 +17,11 @@ namespace RoomBooking.Services
             _context = context ?? throw new ArgumentNullException();
         }
 
+        public Task<Location> GetLocation(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<Location>> GetLocations()
         {
             return await _context

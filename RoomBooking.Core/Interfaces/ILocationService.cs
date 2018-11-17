@@ -8,6 +8,7 @@ namespace RoomBooking.Core.Interfaces
 {
     public interface ILocationService
     {
+        Task<Location> GetLocation(int id);
         Task<IEnumerable<Location>> GetLocations();
     }
 }

@@ -39,5 +39,16 @@ namespace RoomBooking.Services.Tests
             Assert.NotNull(locations);
             Assert.True(locations.Any());
         }
+
+        [Fact]
+        public async void GetLocationShouldReturnObject()
+        {
+            ILocationService sut = new LocationService(_fixture.MockContext.Object);
+
+            int expected = 1;
+            int actual = (await sut.GetLocation(expected)).ID;
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
