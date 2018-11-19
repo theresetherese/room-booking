@@ -56,6 +56,7 @@ namespace RoomBooking.Services.Tests
         [Fact]
         public async Task GetLocationShouldThrowExceptionOnNegativeNumber()
         {
+            // Also covers int overflow
             await GetLocationShouldThrowArgumentOutOfRangeException(-5);
         }
 
