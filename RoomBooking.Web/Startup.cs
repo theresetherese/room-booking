@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RoomBooking.Data;
 using Microsoft.EntityFrameworkCore;
+using RoomBooking.Core.Interfaces;
+using RoomBooking.Services;
 
 namespace RoomBooking.Web
 {
@@ -28,6 +30,8 @@ namespace RoomBooking.Web
             );
 
             services.AddMvc();
+
+            services.AddScoped<ILocationService, LocationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
