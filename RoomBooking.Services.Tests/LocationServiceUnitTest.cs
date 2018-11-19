@@ -2,6 +2,7 @@ using RoomBooking.Core.Interfaces;
 using RoomBooking.TestHelpers;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace RoomBooking.Services.Tests
@@ -30,7 +31,7 @@ namespace RoomBooking.Services.Tests
         }
 
         [Fact]
-        public async void GetLocationsShouldReturnObjects()
+        public async Task GetLocationsShouldReturnObjects()
         {
             ILocationService sut = new LocationService(_fixture.MockContext.Object);
 
@@ -41,7 +42,7 @@ namespace RoomBooking.Services.Tests
         }
 
         [Fact]
-        public async void GetLocationShouldReturnObject()
+        public async Task GetLocationShouldReturnObject()
         {
             ILocationService sut = new LocationService(_fixture.MockContext.Object);
 
@@ -53,10 +54,15 @@ namespace RoomBooking.Services.Tests
         }
 
         [Fact]
-        public async void GetLocationShouldThrowExceptionOnNegativeNumber()
+        public async Task GetLocationShouldThrowExceptionOnNegativeNumber()
+        {
+            await GetLocationShouldThrowArgumentOutOfRangeException(-5);
+        }
+
+        private async Task GetLocationShouldThrowArgumentOutOfRangeException(int input)
         {
             ILocationService sut = new LocationService(_fixture.MockContext.Object);
-            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => sut.GetLocation(-5));
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => sut.GetLocation(input));
         }
     }
 }
