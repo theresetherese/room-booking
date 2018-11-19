@@ -19,6 +19,11 @@ namespace RoomBooking.Services
 
         public async Task<Location> GetLocation(int id)
         {
+            if (id <= 0)
+            {
+                throw new ArgumentOutOfRangeException("id");
+            }
+
             return await _context
                 .Locations
                 .FirstOrDefaultAsync(l => l.ID == id);

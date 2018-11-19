@@ -56,8 +56,7 @@ namespace RoomBooking.Services.Tests
         public async void GetLocationShouldThrowExceptionOnNegativeNumber()
         {
             ILocationService sut = new LocationService(_fixture.MockContext.Object);
-            Action action = () => sut.GetLocation(-5);
-            Assert.Throws<ArgumentOutOfRangeException>(action);
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => sut.GetLocation(-5));
         }
     }
 }
