@@ -16,6 +16,9 @@ namespace RoomBooking.Web.Controllers
         }
         public async Task<IActionResult> Index(int? locationId)
         {
+            if (!locationId.HasValue)
+                throw new ArgumentNullException(nameof(locationId), "LocationId must have a value");
+
             var location = _locationService.GetLocation(locationId.Value);
             return View(await location);
         }
