@@ -47,6 +47,16 @@ namespace RoomBooking.Web.Tests
             await Assert.ThrowsAsync<ArgumentNullException>(() => controller.Index(null));
         }
 
+        [Fact]
+        public async Task Index_ThrowsException_ForNegativeNumber()
+        {
+            var mockService = new Mock<ILocationService>();
+
+            var controller = new LocationController(mockService.Object);
+
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => controller.Index(-1000));
+        }
+
         private Location GetTestLocation()
         {
             return new Location()
