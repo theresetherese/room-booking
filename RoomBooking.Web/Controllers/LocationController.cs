@@ -14,15 +14,15 @@ namespace RoomBooking.Web.Controllers
         {
             _locationService = locationService;
         }
-        public async Task<IActionResult> Index(int? locationId)
+        public async Task<IActionResult> Index(int? id)
         {
-            if (!locationId.HasValue)
-                throw new ArgumentNullException(nameof(locationId), "LocationId must have a value");
+            if (!id.HasValue)
+                throw new ArgumentNullException(nameof(id), "Id must have a value");
 
-            if(locationId <= 0)
-                throw new ArgumentOutOfRangeException(nameof(locationId), "LocationId must be larger than zero");
+            if(id <= 0)
+                throw new ArgumentOutOfRangeException(nameof(id), "Id must be larger than zero");
 
-            var location = _locationService.GetLocation(locationId.Value);
+            var location = _locationService.GetLocation(id.Value);
             return View(await location);
         }
     }

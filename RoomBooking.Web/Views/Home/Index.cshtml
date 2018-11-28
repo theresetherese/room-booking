@@ -9,6 +9,10 @@
 <ul>
 @foreach (var location in Model)
 {
-    <li>@location.Name (ID: @location.ID)</li>
+    <li>
+        <a asp-controller="Location" asp-action="Index" asp-route-id="@location.ID">
+            @location.Name (ID: @location.ID)
+        </a>
+    </li>
 }
 </ul>
