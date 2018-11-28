@@ -10,7 +10,6 @@ namespace RoomBooking.Core.Models
         public int ID { get; set; }
         [Required]
         public string Name { get; set; }
-        public int LocationId { get; set; }
         public Location Location { get; set; }
     }
 }

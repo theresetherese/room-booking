@@ -13,5 +13,14 @@ namespace RoomBooking.Core.Tests
 
             ValidationShouldThrowError(sut);
         }
+
+        [Fact]
+        public void ShouldThrowErrorOnMissingLocation()
+        {
+            Room sut = new Room();
+            sut.Name = "RoomName";
+
+            ValidationShouldThrowError(sut);
+        }
     }
 }
