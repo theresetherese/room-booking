@@ -18,8 +18,8 @@ namespace RoomBooking.Web.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var locations = await _locationService.GetLocations();
-            return View(locations);
+            var locationsTask = _locationService.GetLocations();
+            return View(await locationsTask);
         }
 
         //public IActionResult Error()
