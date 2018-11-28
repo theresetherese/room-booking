@@ -37,6 +37,16 @@ namespace RoomBooking.Web.Tests
             Assert.Equal(locationId, model.ID);
         }
 
+        [Fact]
+        public async Task Index_ThrowsException_ForNullParameter()
+        {
+            var mockService = new Mock<ILocationService>();
+
+            var controller = new LocationController(mockService.Object);
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() => controller.Index(null));
+        }
+
         private Location GetTestLocation()
         {
             return new Location()
