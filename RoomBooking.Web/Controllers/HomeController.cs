@@ -14,12 +14,12 @@ namespace RoomBooking.Web.Controllers
         private ILocationService _locationService;
         public HomeController(ILocationService locationService)
         {
-            throw new NotImplementedException();
+            _locationService = locationService;
         }
         public async Task<IActionResult> Index()
         {
-            throw new NotImplementedException();
-            //return View();
+            var locations = await _locationService.GetLocations();
+            return View(locations);
         }
 
         //public IActionResult Error()

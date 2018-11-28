@@ -1,5 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Start";
+    @model IEnumerable<RoomBooking.Core.Models.Location>
 }
 
 <p>Hello, World!</p>
+
+<ul>
+@foreach (var location in Model)
+{
+    <li>@location.Name (ID: @location.ID)</li>
+}
+</ul>
