@@ -19,6 +19,9 @@ namespace RoomBooking.Web.Controllers
             if (!locationId.HasValue)
                 throw new ArgumentNullException(nameof(locationId), "LocationId must have a value");
 
+            if(locationId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(locationId), "LocationId must be larger than zero");
+
             var location = _locationService.GetLocation(locationId.Value);
             return View(await location);
         }
