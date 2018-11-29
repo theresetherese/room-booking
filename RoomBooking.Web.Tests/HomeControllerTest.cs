@@ -56,7 +56,7 @@ namespace RoomBooking.Web.Tests
                 Name = l.Name
             }).First();
             var actual = model.Locations.First();
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected.ID, actual.ID);
         }
 
         private IEnumerable<Location> GetTestLocations()
