@@ -21,5 +21,13 @@ namespace RoomBooking.Services.Tests
         {
             IRoomService sut = new RoomService(_fixture.MockContext.Object);
         }
+
+        [Fact]
+        public void ServiceCreationWithNullContextShouldFail()
+        {
+            Action action = () => new RoomService(null);
+
+            Assert.Throws<ArgumentNullException>(action);
+        }
     }
 }
