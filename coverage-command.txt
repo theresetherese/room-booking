@@ -1,0 +1,1 @@
+dotnet test --no-build /p:CollectCoverage=true /p:CoverletOutputFormat="opencover" /p:Exclude="[RoomBooking.TestHelpers]*%2c[RoomBooking.Data]*"
