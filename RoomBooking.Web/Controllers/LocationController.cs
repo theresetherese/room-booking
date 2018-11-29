@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RoomBooking.Core.Interfaces;
+using RoomBooking.Web.Models;
 using RoomBooking.Web.Models.Location;
 
 namespace RoomBooking.Web.Controllers
@@ -28,6 +30,10 @@ namespace RoomBooking.Web.Controllers
                 throw new ArgumentOutOfRangeException(nameof(id), "Id must be larger than zero");
 
             var location = await _locationService.GetLocation(id.Value);
+
+            if (location == null)
+                return Error();
+
             var rooms = await _roomService.GetRoomsByLocation(id.Value);
 
             IndexViewModel vm = new IndexViewModel();
@@ -37,8 +43,13 @@ namespace RoomBooking.Web.Controllers
                 ID = r.ID,
                 Name = r.Name
             });
-
+            
             return View(vm);
+        }
+
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier });
         }
     }
 }
