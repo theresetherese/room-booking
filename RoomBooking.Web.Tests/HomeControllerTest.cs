@@ -46,8 +46,17 @@ namespace RoomBooking.Web.Tests
             // Do we have the right model?
             var model = Assert.IsAssignableFrom<IndexViewModel>(viewResult.ViewData.Model);
             
-            // Do we have the correct number of items?
+            // Do we have the correct number of locations?
             Assert.Equal(2, model.Locations.Count());
+
+            //Have the locations been mapped accordingly?
+            var expected = GetTestLocations().Select(l => new LocationViewModel()
+            {
+                ID = l.ID,
+                Name = l.Name
+            }).First();
+            var actual = model.Locations.First();
+            Assert.Equal(expected, actual);
         }
 
         private IEnumerable<Location> GetTestLocations()
