@@ -10,11 +10,13 @@ namespace RoomBooking.Web.Controllers
     public class LocationController : Controller
     {
         private ILocationService _locationService;
+        private IRoomService _roomService;
         public LocationController(
             ILocationService locationService,
             IRoomService roomService)
         {
             _locationService = locationService ?? throw new ArgumentNullException(nameof(locationService));
+            _roomService = roomService ?? throw new ArgumentNullException(nameof(roomService));
         }
         public async Task<IActionResult> Index(int? id)
         {

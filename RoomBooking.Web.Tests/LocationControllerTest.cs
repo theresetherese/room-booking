@@ -24,14 +24,19 @@ namespace RoomBooking.Web.Tests
         [Fact]
         public void Constructor_ThrowsException_EmptyLocationService()
         {
-            Assert.Throws<ArgumentNullException>(() => new LocationController(null, null));
+            var mockRoomService = new Mock<IRoomService>();
+            Assert.Throws<ArgumentNullException>(() => 
+                new LocationController(null, mockRoomService.Object)
+            );
         }
 
         [Fact]
         public void Constructor_ThrowsException_EmptyRoomService()
         {
             var mockLocationService = new Mock<ILocationService>();
-            Assert.Throws<ArgumentNullException>(() => new LocationController(mockLocationService.Object, null));
+            Assert.Throws<ArgumentNullException>(() => 
+                new LocationController(mockLocationService.Object, null)
+            );
         }
 
         [Fact]
