@@ -37,5 +37,17 @@ namespace RoomBooking.Services.Tests
             IRoomService sut = new RoomService(_fixture.MockContext.Object);
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => sut.GetRoomsByLocation(-1000));
         }
+
+        [Fact]
+        public async Task GetRoomsByLocationShouldReturnObjects()
+        {
+            IRoomService sut = new RoomService(_fixture.MockContext.Object);
+
+            int locationId = 1;
+            var rooms = await sut.GetRoomsByLocation(locationId);
+
+            Assert.NotNull(rooms);
+            Assert.True(rooms.Any());
+        }
     }
 }
