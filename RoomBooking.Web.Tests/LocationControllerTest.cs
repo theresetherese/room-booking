@@ -80,15 +80,16 @@ namespace RoomBooking.Web.Tests
                 Name = r.Name
             }).First();
             var actual = model.Rooms.First();
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected.ID, actual.ID);
         }
 
         [Fact]
         public async Task Index_ThrowsException_ForNullParameter()
         {
-            var mockService = new Mock<ILocationService>();
+            var mockLocationService = new Mock<ILocationService>();
+            var mockRoomService = new Mock<IRoomService>();
 
-            var controller = new LocationController(mockService.Object, null);
+            var controller = new LocationController(mockLocationService.Object, mockRoomService.Object);
 
             await Assert.ThrowsAsync<ArgumentNullException>(() => controller.Index(null));
         }
@@ -96,9 +97,10 @@ namespace RoomBooking.Web.Tests
         [Fact]
         public async Task Index_ThrowsException_ForNegativeNumber()
         {
-            var mockService = new Mock<ILocationService>();
+            var mockLocationService = new Mock<ILocationService>();
+            var mockRoomService = new Mock<IRoomService>();
 
-            var controller = new LocationController(mockService.Object, null);
+            var controller = new LocationController(mockLocationService.Object, mockRoomService.Object);
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => controller.Index(-1000));
         }
