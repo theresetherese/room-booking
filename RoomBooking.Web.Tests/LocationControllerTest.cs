@@ -14,6 +14,19 @@ namespace RoomBooking.Web.Tests
     public class LocationControllerTest
     {
         [Fact]
+        public void Constructor_WithLocationService()
+        {
+            var mockService = new Mock<ILocationService>();
+            new LocationController(mockService.Object);
+        }
+
+        [Fact]
+        public void Constructor_ThrowsException_EmptyLocationService()
+        {
+            Assert.Throws<ArgumentNullException>(() => new LocationController(null));
+        }
+
+        [Fact]
         public async Task Index_ReturnsView_WithSingleLocation()
         {
             int locationId = 1;
