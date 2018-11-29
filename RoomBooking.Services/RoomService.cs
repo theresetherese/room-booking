@@ -13,7 +13,7 @@ namespace RoomBooking.Services
         private DataContext _context;
         public RoomService(DataContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
         public async Task<IEnumerable<Room>> GetRoomsByLocation(int locationId)
         {
