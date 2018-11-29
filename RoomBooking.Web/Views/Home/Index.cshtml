@@ -1,13 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Start";
-    @model IEnumerable<RoomBooking.Core.Models.Location>
+    @model RoomBooking.Web.Models.Home.IndexViewModel
 }
 
 <h1>Room Booking</h1>
 <h2>Inventing the wheel, over and over again.</h2>
 
 <ul>
-@foreach (var location in Model)
+@foreach (var location in Model.Locations)
 {
     <li>
         <a asp-controller="Location" asp-action="Index" asp-route-id="@location.ID">
