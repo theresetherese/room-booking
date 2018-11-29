@@ -16,14 +16,22 @@ namespace RoomBooking.Web.Tests
         [Fact]
         public void Constructor_WithLocationService()
         {
-            var mockService = new Mock<ILocationService>();
-            new LocationController(mockService.Object);
+            var mockLocationService = new Mock<ILocationService>();
+            var mockRoomService = new Mock<IRoomService>();
+            new LocationController(mockLocationService.Object, mockRoomService.Object);
         }
 
         [Fact]
         public void Constructor_ThrowsException_EmptyLocationService()
         {
-            Assert.Throws<ArgumentNullException>(() => new LocationController(null));
+            Assert.Throws<ArgumentNullException>(() => new LocationController(null, null));
+        }
+
+        [Fact]
+        public void Constructor_ThrowsException_EmptyRoomService()
+        {
+            var mockLocationService = new Mock<ILocationService>();
+            Assert.Throws<ArgumentNullException>(() => new LocationController(mockLocationService.Object, null));
         }
 
         [Fact]
@@ -35,7 +43,7 @@ namespace RoomBooking.Web.Tests
             mockService.Setup(service => service.GetLocation(locationId))
                 .ReturnsAsync(GetTestLocation());
 
-            var controller = new LocationController(mockService.Object);
+            var controller = new LocationController(mockService.Object, null);
 
             // Run action
             var result = await controller.Index(locationId);
@@ -55,7 +63,7 @@ namespace RoomBooking.Web.Tests
         {
             var mockService = new Mock<ILocationService>();
 
-            var controller = new LocationController(mockService.Object);
+            var controller = new LocationController(mockService.Object, null);
 
             await Assert.ThrowsAsync<ArgumentNullException>(() => controller.Index(null));
         }
@@ -65,7 +73,7 @@ namespace RoomBooking.Web.Tests
         {
             var mockService = new Mock<ILocationService>();
 
-            var controller = new LocationController(mockService.Object);
+            var controller = new LocationController(mockService.Object, null);
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => controller.Index(-1000));
         }

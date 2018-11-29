@@ -10,7 +10,9 @@ namespace RoomBooking.Web.Controllers
     public class LocationController : Controller
     {
         private ILocationService _locationService;
-        public LocationController(ILocationService locationService)
+        public LocationController(
+            ILocationService locationService,
+            IRoomService roomService)
         {
             _locationService = locationService ?? throw new ArgumentNullException(nameof(locationService));
         }
