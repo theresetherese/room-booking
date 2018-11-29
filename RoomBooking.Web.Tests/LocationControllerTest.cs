@@ -9,6 +9,7 @@ using RoomBooking.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using RoomBooking.Web.Models.Location;
+using RoomBooking.Web.Models;
 
 namespace RoomBooking.Web.Tests
 {
@@ -81,6 +82,22 @@ namespace RoomBooking.Web.Tests
             }).First();
             var actual = model.Rooms.First();
             Assert.Equal(expected.ID, actual.ID);
+        }
+
+        [Fact]
+        public async Task Index_ReturnsError_OnLocationNotFound()
+        {
+            var mockLocationService = new Mock<ILocationService>();
+            var mockRoomService = new Mock<IRoomService>();
+
+            var controller = new LocationController(
+                mockLocationService.Object,
+                mockRoomService.Object
+            );
+
+            var result = await controller.Index(1000000);
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsAssignableFrom<ErrorViewModel>(viewResult.ViewData.Model);
         }
 
         [Fact]
