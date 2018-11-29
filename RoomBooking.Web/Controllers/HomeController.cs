@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RoomBooking.Core.Interfaces;
 using RoomBooking.Web.Models;
+using RoomBooking.Web.Models.Home;
 
 namespace RoomBooking.Web.Controllers
 {
@@ -18,8 +19,19 @@ namespace RoomBooking.Web.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var locationsTask = _locationService.GetLocations();
-            return View(await locationsTask);
+            var locations = await _locationService.GetLocations();
+
+            IndexViewModel vm = new IndexViewModel();
+            if (locations != null)
+            {
+                vm.Locations = locations.Select(l => new LocationViewModel()
+                {
+                    ID = l.ID,
+                    Name = l.Name
+                });
+            }
+
+            return View(vm);
         }
 
         public IActionResult Error()
