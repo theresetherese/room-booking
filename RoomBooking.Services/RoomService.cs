@@ -1,8 +1,10 @@
-﻿using RoomBooking.Core.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using RoomBooking.Core.Interfaces;
 using RoomBooking.Core.Models;
 using RoomBooking.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +22,10 @@ namespace RoomBooking.Services
             if (locationId <= 0)
                 throw new ArgumentOutOfRangeException(nameof(locationId));
 
-            throw new NotImplementedException();
+            return await _context
+                .Rooms
+                .Where(r => r.Location.ID == locationId)
+                .ToListAsync();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace RoomBooking.Services.Tests
         }
 
         [Fact]
-        public async Task GetRoomByLocationShouldThrowExceptionOnNegativeNumber()
+        public async Task GetRoomsByLocationShouldThrowExceptionOnNegativeNumber()
         {
             // Also covers int overflow
             IRoomService sut = new RoomService(_fixture.MockContext.Object);
