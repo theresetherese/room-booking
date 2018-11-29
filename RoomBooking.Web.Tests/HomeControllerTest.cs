@@ -15,6 +15,12 @@ namespace RoomBooking.Web.Tests
     public class HomeControllerTest
     {
         [Fact]
+        public void Controller_ThrowsException_EmptyLocationService()
+        {
+            Assert.Throws<ArgumentNullException>(() => new HomeController(null));
+        }
+
+        [Fact]
         public async Task Index_ReturnsView_WithLocations()
         {
             // Setup service
