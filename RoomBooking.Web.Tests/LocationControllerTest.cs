@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using RoomBooking.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using RoomBooking.Web.Models.Location;
 
 namespace RoomBooking.Web.Tests
 {
@@ -40,27 +41,46 @@ namespace RoomBooking.Web.Tests
         }
 
         [Fact]
-        public async Task Index_ReturnsView_WithSingleLocation()
+        public async Task Index_ReturnsView_WithSingleLocationAndRooms()
         {
             int locationId = 1;
             // Setup service
-            var mockService = new Mock<ILocationService>();
-            mockService.Setup(service => service.GetLocation(locationId))
+            var mockLocationService = new Mock<ILocationService>();
+            mockLocationService.Setup(service => service.GetLocation(locationId))
                 .ReturnsAsync(GetTestLocation());
 
-            var controller = new LocationController(mockService.Object, null);
+            var mockRoomService = new Mock<IRoomService>();
+            mockRoomService.Setup(service => service.GetRoomsByLocation(locationId))
+                .ReturnsAsync(GetTestRooms());
+
+            var controller = new LocationController(
+                mockLocationService.Object, 
+                mockRoomService.Object
+            );
 
             // Run action
             var result = await controller.Index(locationId);
 
             // Do we have the right view?
             var viewResult = Assert.IsType<ViewResult>(result);
-            
+
             // Do we have the right model?
-            var model = Assert.IsAssignableFrom<Location>(viewResult.ViewData.Model);
-            
-            // Do we have the correct item?
-            Assert.Equal(locationId, model.ID);
+            var model = Assert.IsAssignableFrom<IndexViewModel>(viewResult.ViewData.Model);
+
+            // Do we have the right location?
+            Assert.Equal(GetTestLocation().Name, model.Location);
+
+            // Do we have the correct number of rooms?
+            Assert.Equal(GetTestRooms().Count(), model.Rooms.Count());
+
+            //Have the rooms been mapped accordingly?
+            var expected = GetTestRooms().Select(r => new RoomViewModel()
+            {
+                ID = r.ID,
+                Name = r.Name
+            }).First();
+            var actual = model.Rooms.First();
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -89,6 +109,28 @@ namespace RoomBooking.Web.Tests
             {
                 ID = 1,
                 Name = "Linköping"
+            };
+        }
+
+        private IEnumerable<Room> GetTestRooms()
+        {
+            return new List<Room>()
+            {
+                new Room()
+                {
+                    ID = 1,
+                    Name = "Room 1"
+                },
+                new Room()
+                {
+                    ID = 2,
+                    Name = "Room 2"
+                },
+                new Room()
+                {
+                    ID = 3,
+                    Name = "Room 3"
+                }
             };
         }
     }
