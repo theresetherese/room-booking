@@ -1,10 +1,22 @@
 ﻿
 @{
     ViewData["Title"] = "Plats";
-    @model RoomBooking.Core.Models.Location
+    @model RoomBooking.Web.Models.Location.IndexViewModel
 }
 <p>
     <a asp-controller="Home">&laquo; Tillbaka</a>
 </p>
 
-<h2>Plats: @Model.Name</h2>
+<h2>@Model.Location</h2>
+
+<h3>Tillgängliga rum</h3>
+<ul>
+    @foreach (var room in Model.Rooms)
+    {
+        <li>
+            <a asp-controller="Room" asp-action="Index" asp-route-id="@room.ID">
+                @room.Name (ID: @room.ID)
+            </a>
+        </li>
+    }
+</ul>

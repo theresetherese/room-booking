@@ -32,6 +32,7 @@ namespace RoomBooking.Web
             services.AddMvc();
 
             services.AddScoped<ILocationService, LocationService>();
+            services.AddScoped<IRoomService, RoomService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
