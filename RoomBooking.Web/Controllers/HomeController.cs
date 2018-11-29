@@ -15,7 +15,12 @@ namespace RoomBooking.Web.Controllers
         private ILocationService _locationService;
         public HomeController(ILocationService locationService)
         {
+            if (locationService == null)
+                throw new ArgumentNullException(nameof(locationService));
+
             _locationService = locationService;
+
+            
         }
         public async Task<IActionResult> Index()
         {
