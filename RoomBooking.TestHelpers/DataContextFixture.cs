@@ -29,7 +29,7 @@ namespace RoomBooking.TestHelpers
 
         private void SetupDataContextLocations()
         {
-            var locations = new List<Location>
+            var locations = new List<Location>()
             {
                 new Location
                 {
@@ -43,8 +43,27 @@ namespace RoomBooking.TestHelpers
                 }
             };
 
-            var mock = locations.AsQueryable().BuildMockDbSet();
-            MockContext.Setup(c => c.Locations).Returns(mock.Object);
+            var mockLocations = locations.AsQueryable().BuildMockDbSet();
+            MockContext.Setup(c => c.Locations).Returns(mockLocations.Object);
+
+            var rooms = new List<Room>()
+            {
+                new Room()
+                {
+                    ID = 1,
+                    Name = "Room 1",
+                    Location = locations[0]
+                },
+                new Room()
+                {
+                    ID = 2,
+                    Name = "Room 2",
+                    Location = locations[1]
+                }
+            };
+
+            var mockRooms = rooms.AsQueryable().BuildMockDbSet();
+            MockContext.Setup(c => c.Rooms).Returns(mockRooms.Object);
         }
     }
 }
