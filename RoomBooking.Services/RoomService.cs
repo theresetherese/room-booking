@@ -17,6 +17,9 @@ namespace RoomBooking.Services
         }
         public async Task<IEnumerable<Room>> GetRoomsByLocation(int locationId)
         {
+            if (locationId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(locationId));
+
             throw new NotImplementedException();
         }
     }
