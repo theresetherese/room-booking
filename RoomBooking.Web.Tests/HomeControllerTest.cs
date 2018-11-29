@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using RoomBooking.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using RoomBooking.Web.Models.Home;
 
 namespace RoomBooking.Web.Tests
 {
@@ -30,10 +31,10 @@ namespace RoomBooking.Web.Tests
             var viewResult = Assert.IsType<ViewResult>(result);
             
             // Do we have the right model?
-            var model = Assert.IsAssignableFrom<IEnumerable<Location>>(viewResult.ViewData.Model);
+            var model = Assert.IsAssignableFrom<IndexViewModel>(viewResult.ViewData.Model);
             
             // Do we have the correct number of items?
-            Assert.Equal(2, model.Count());
+            Assert.Equal(2, model.Locations.Count());
         }
 
         private IEnumerable<Location> GetTestLocations()
