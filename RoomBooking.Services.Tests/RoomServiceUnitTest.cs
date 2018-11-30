@@ -39,6 +39,18 @@ namespace RoomBooking.Services.Tests
         }
 
         [Fact]
+        public async Task GetRoom_ReturnsObject()
+        {
+            IRoomService sut = new RoomService(_fixture.MockContext.Object);
+
+            int roomId = 2;
+            var room = await sut.GetRoom(roomId);
+
+            Assert.NotNull(room);
+            Assert.Equal(roomId, room.ID);
+        }
+
+        [Fact]
         public async Task GetRoomsByLocationShouldThrowExceptionOnNegativeNumber()
         {
             // Also covers int overflow
