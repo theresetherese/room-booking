@@ -23,7 +23,9 @@ namespace RoomBooking.Services
             if (roomId <= 0)
                 throw new ArgumentOutOfRangeException(nameof(roomId));
 
-            throw new NotImplementedException();
+            return await _context
+                .Rooms
+                .FirstOrDefaultAsync(r => r.ID == roomId);
         }
 
         public async Task<IEnumerable<Room>> GetRoomsByLocation(int locationId)
