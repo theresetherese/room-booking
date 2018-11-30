@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "Rum";
+    @model RoomBooking.Web.Models.Room.IndexViewModel
+}
+
+<p>
+    <a asp-controller="Location" asp-action="Index" asp-route-id="@Model.LocationId">&laquo; Tillbaka</a>
+</p>
+
+<h2>@Model.Room</h2>
+

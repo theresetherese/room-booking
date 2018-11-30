@@ -8,5 +8,6 @@ namespace RoomBooking.Web.Models.Room
     public class IndexViewModel
     {
         public string Room { get; set; }
+        public int LocationId { get; set; }
     }
 }
