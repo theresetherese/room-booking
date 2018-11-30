@@ -20,6 +20,9 @@ namespace RoomBooking.Services
 
         public async Task<Room> GetRoom(int roomId)
         {
+            if (roomId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(roomId));
+
             throw new NotImplementedException();
         }
 
