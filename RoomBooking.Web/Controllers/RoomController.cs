@@ -14,7 +14,7 @@ namespace RoomBooking.Web.Controllers
         {
             _roomService = roomService ?? throw new ArgumentNullException(nameof(roomService));
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
             throw new NotImplementedException();
         }
