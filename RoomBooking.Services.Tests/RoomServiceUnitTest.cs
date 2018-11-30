@@ -31,6 +31,14 @@ namespace RoomBooking.Services.Tests
         }
 
         [Fact]
+        public async Task GetRoom_ThrowsException_NegativeNumber()
+        {
+            // Also covers int overflow
+            IRoomService sut = new RoomService(_fixture.MockContext.Object);
+            await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => sut.GetRoom(-20));
+        }
+
+        [Fact]
         public async Task GetRoomsByLocationShouldThrowExceptionOnNegativeNumber()
         {
             // Also covers int overflow
