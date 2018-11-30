@@ -16,5 +16,13 @@ namespace RoomBooking.Web.Tests
             var mockRoomService = new Mock<IRoomService>();
             new RoomController(mockRoomService.Object);
         }
+
+        [Fact]
+        public void Constructor_ThrowsException_EmptyServices()
+        {
+            Assert.Throws<ArgumentNullException>(() =>
+                new RoomController(null)
+            );
+        }
     }
 }
