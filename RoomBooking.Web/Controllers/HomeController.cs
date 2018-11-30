@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
+using RoomBooking.Core.Interfaces;
+using RoomBooking.Web.Models.Home;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using RoomBooking.Core.Interfaces;
-using RoomBooking.Web.Models;
-using RoomBooking.Web.Models.Home;
 
 namespace RoomBooking.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private ILocationService _locationService;
         public HomeController(ILocationService locationService)
@@ -32,11 +29,6 @@ namespace RoomBooking.Web.Controllers
             }
 
             return View(vm);
-        }
-
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier });
         }
     }
 }
