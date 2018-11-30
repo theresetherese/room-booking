@@ -22,7 +22,7 @@ namespace RoomBooking.Web.Controllers
 
             IndexViewModel vm = new IndexViewModel();
             vm.Room = room.Name;
-            vm.LocationId = room.Location.ID;
+            vm.LocationId = room.LocationId;
 
             return View(vm);
         }

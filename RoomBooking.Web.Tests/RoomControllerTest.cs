@@ -50,7 +50,7 @@ namespace RoomBooking.Web.Tests
             var model = Assert.IsAssignableFrom<IndexViewModel>(viewResult.ViewData.Model);
 
             Assert.Equal(GetTestRoom().Name, model.Room);
-            Assert.Equal(GetTestRoom().Location.ID, model.LocationId);
+            Assert.Equal(GetTestRoom().LocationId, model.LocationId);
         }
 
         [Fact]
@@ -77,6 +77,7 @@ namespace RoomBooking.Web.Tests
             {
                 ID = 1,
                 Name = "Room 1",
+                LocationId = 1,
                 Location = new Location()
                 {
                     ID = 1,
