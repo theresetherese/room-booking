@@ -32,22 +32,23 @@ namespace RoomBooking.Web.Tests
         [Fact]
         public async Task Index_ReturnsView_With_IndexViewModel()
         {
-            int roomId = 2;
+            int roomId = 1;
 
             var mockRoomService = new Mock<IRoomService>();
+            mockRoomService.Setup(service => service.GetRoom(roomId))
+                .ReturnsAsync(GetTestRoom());
 
             var controller = new RoomController(
                 mockRoomService.Object
             );
 
-            // Run action
             var result = await controller.Index(roomId);
 
-            // Do we have the right view?
             var viewResult = Assert.IsType<ViewResult>(result);
 
-            // Do we have the right model?
             var model = Assert.IsAssignableFrom<IndexViewModel>(viewResult.ViewData.Model);
+
+            Assert.Equal(GetTestRoom().Name, model.Room);
         }
 
         private Room GetTestRoom()
