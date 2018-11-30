@@ -12,7 +12,7 @@ namespace RoomBooking.Web.Controllers
         private IRoomService _roomService;
         public RoomController(IRoomService roomService)
         {
-            _roomService = roomService;
+            _roomService = roomService ?? throw new ArgumentNullException(nameof(roomService));
         }
         public async Task<IActionResult> Index()
         {
