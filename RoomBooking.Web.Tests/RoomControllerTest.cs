@@ -3,6 +3,7 @@ using Moq;
 using RoomBooking.Core.Interfaces;
 using RoomBooking.Core.Models;
 using RoomBooking.Web.Controllers;
+using RoomBooking.Web.Models;
 using RoomBooking.Web.Models.Room;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,24 @@ namespace RoomBooking.Web.Tests
             var model = Assert.IsAssignableFrom<IndexViewModel>(viewResult.ViewData.Model);
 
             Assert.Equal(GetTestRoom().Name, model.Room);
+        }
+
+        [Fact]
+        public async Task Index_ReturnError_RoomNotFound()
+        {
+            int roomId = 1;
+
+            var mockRoomService = new Mock<IRoomService>();
+
+            var controller = new RoomController(
+                mockRoomService.Object
+            );
+
+            var result = await controller.Index(roomId);
+
+            var viewResult = Assert.IsType<ViewResult>(result);
+
+            var model = Assert.IsAssignableFrom<ErrorViewModel>(viewResult.ViewData.Model);
         }
 
         private Room GetTestRoom()
