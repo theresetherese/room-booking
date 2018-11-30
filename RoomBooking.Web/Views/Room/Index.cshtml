@@ -4,9 +4,20 @@
     @model RoomBooking.Web.Models.Room.IndexViewModel
 }
 
-<p>
-    <a asp-controller="Location" asp-action="Index" asp-route-id="@Model.LocationId">&laquo; Tillbaka</a>
-</p>
+<div class="row mt-4">
+    <div class="col">
+        <h3>@Model.Room</h3>
+        <p>There should be a list of meetings here but I ran out of time! Oops.</p>
+        <p><i>Actually, wou were also supposed to be able to create a new meeting in this room.</i></p>
+    </div>
+</div>
 
-<h2>@Model.Room</h2>
-
+<div class="row mt-4">
+    <div class="col">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light">
+                <li class="breadcrumb-item"><a asp-controller="Location" asp-action="Index" asp-route-id="@Model.LocationId">&laquo; Tillbaka</a></li>
+            </ol>
+        </nav>
+    </div>
+</div>

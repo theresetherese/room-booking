@@ -9,9 +9,21 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-
-    @RenderBody()
-
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">Room Booking</span>
+            <span class="navbar-text">
+                Inventing the wheel. Over, and over, again.
+            </span>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

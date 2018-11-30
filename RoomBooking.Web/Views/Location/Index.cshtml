@@ -3,20 +3,46 @@
     ViewData["Title"] = "Plats";
     @model RoomBooking.Web.Models.Location.IndexViewModel
 }
-<p>
-    <a asp-controller="Home">&laquo; Tillbaka</a>
-</p>
 
-<h2>@Model.Location</h2>
+<div class="row mt-4">
+    <div class="col">
+        <h3>@Model.Location</h3>
+        <div class="card mt-4">
+            <h5 class="card-header bg-light">
+                Select a room
+            </h5>
 
-<h3>Tillgängliga rum</h3>
-<ul>
-    @foreach (var room in Model.Rooms)
-    {
-        <li>
-            <a asp-controller="Room" asp-action="Index" asp-route-id="@room.ID">
-                @room.Name (ID: @room.ID)
-            </a>
-        </li>
-    }
-</ul>
+            @if (Model.Rooms.Any())
+            {
+                <div class="list-group list-group-flush">
+                    @foreach (var room in Model.Rooms)
+                    {
+                        <a class="list-group-item list-group-item-action"
+                           asp-controller="Room"
+                           asp-action="Index"
+                           asp-route-id="@room.ID">
+                            @room.Name
+                        </a>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="card-body">
+                    <p class="card-text">No rooms, sorry!</p>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-light">
+                <li class="breadcrumb-item"><a asp-controller="Home">&laquo; Tillbaka</a></li>
+            </ol>
+        </nav>
+    </div>
+</div>

@@ -3,16 +3,23 @@
     @model RoomBooking.Web.Models.Home.IndexViewModel
 }
 
-<h1>Room Booking</h1>
-<h2>Inventing the wheel, over and over again.</h2>
-
-<ul>
-@foreach (var location in Model.Locations)
-{
-    <li>
-        <a asp-controller="Location" asp-action="Index" asp-route-id="@location.ID">
-            @location.Name (ID: @location.ID)
-        </a>
-    </li>
-}
-</ul>
+<div class="row mt-4">
+    <div class="col">
+        <div class="card">
+            <h5 class="card-header bg-light">
+                Select a location
+            </h5>
+            <div class="list-group list-group-flush">
+                @foreach (var location in Model.Locations)
+                {
+                    <a class="list-group-item list-group-item-action"
+                       asp-controller="Location"
+                       asp-action="Index"
+                       asp-route-id="@location.ID">
+                        @location.Name
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
