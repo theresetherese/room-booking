@@ -17,7 +17,11 @@ namespace RoomBooking.Web.Controllers
         }
         public async Task<IActionResult> Index(int id)
         {
+            var room = await _roomService.GetRoom(id);
+
             IndexViewModel vm = new IndexViewModel();
+            vm.Room = room.Name;
+
             return View(vm);
         }
     }
