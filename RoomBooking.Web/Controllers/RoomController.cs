@@ -9,9 +9,10 @@ namespace RoomBooking.Web.Controllers
 {
     public class RoomController : Controller
     {
+        private IRoomService _roomService;
         public RoomController(IRoomService roomService)
         {
-            throw new NotImplementedException();
+            _roomService = roomService;
         }
         public async Task<IActionResult> Index()
         {

@@ -16,6 +16,5 @@ namespace RoomBooking.Web.Tests
             var mockRoomService = new Mock<IRoomService>();
             new RoomController(mockRoomService.Object);
         }
-
     }
 }
