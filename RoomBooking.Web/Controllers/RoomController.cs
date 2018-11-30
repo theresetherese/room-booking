@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RoomBooking.Core.Interfaces;
+using RoomBooking.Web.Models.Room;
 
 namespace RoomBooking.Web.Controllers
 {
@@ -16,7 +17,8 @@ namespace RoomBooking.Web.Controllers
         }
         public async Task<IActionResult> Index(int id)
         {
-            throw new NotImplementedException();
+            IndexViewModel vm = new IndexViewModel();
+            return View(vm);
         }
     }
 }
